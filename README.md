@@ -4,7 +4,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and profe
 
 ## 🌟 Live Demo
 
-**[View Live Portfolio](https://rehan-s-portfolio.vercel.app/)** *(Replace with your actual deployed URL)*
+https://rehan-portfolio-steel.vercel.app/
 
 ## 📋 Table of Contents
 
