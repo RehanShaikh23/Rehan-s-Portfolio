@@ -25,34 +25,25 @@ const Hero = () => {
       return;
     }
 
+    // Simplified: Only attempts to open the default email client.
+    // Removed setTimeout and copy fallback for this specific handler as per requirements.
     try {
-
       window.location.href = `mailto:${email}`;
-
-
-      setTimeout(() => {
-        const userChoice = confirm(
-          `If your email client didn't open, would you like to copy the email address (${email}) to clipboard instead?`
-        );
-
-        if (userChoice) {
-          copyEmailToClipboard(email);
-        }
-      }, 2000);
-
     } catch (error) {
-      console.error('Error opening email client:', error);
-      copyEmailToClipboard(email);
+      console.error('Error attempting to open email client:', error);
+      // Optionally, provide a fallback message if mailto fails, but not copying.
+      alert(`Could not open email client. Please copy manually: ${email}`);
     }
   };
 
+  // copyEmailToClipboard function remains here as it might be used elsewhere,
+  // or for a future dedicated "Copy Email" button.
   const copyEmailToClipboard = async (email) => {
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(email);
         alert(`Email address copied to clipboard: ${email}`);
       } else {
-
         const textArea = document.createElement('textarea');
         textArea.value = email;
         document.body.appendChild(textArea);
@@ -108,8 +99,8 @@ const Hero = () => {
               </button>
               <button
                 className="social-icon"
-                onClick={() => window.open('https://mail.google.com/mail/?view=cm&fs=1&to=as9565704@gmail.com', '_blank')}
-                aria-label="Send Email via Gmail"
+                onClick={handleEmailClick} // Changed to use the modified handleEmailClick
+                aria-label="Send Email" // Changed aria-label for general email
               >
                 <Mail size={24} />
               </button>

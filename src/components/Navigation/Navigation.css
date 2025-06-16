@@ -3,16 +3,16 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(240, 253, 250, 0.85); /* Very Light Teal with more opacity */
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #CBD5E1; /* Light Gray */
   z-index: 1000;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navigation.scrolled {
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  background: rgba(240, 253, 250, 0.95); /* Slightly more opaque on scroll */
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
 }
 
 .nav-container {
@@ -28,13 +28,13 @@
 .nav-logo {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #2563eb;
+  color: #0D9488; /* Deep Teal */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .nav-logo:hover {
-  color: #1d4ed8;
+  color: #0F766E; /* Darker Teal */
 }
 
 .nav-menu {
@@ -45,35 +45,35 @@
 
 .nav-item {
   text-decoration: none;
-  color: #374151;
+  color: #334155; /* Dark Slate Blue */
   font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
   position: relative;
 }
 
 .nav-item:hover {
-  color: #2563eb;
+  color: #0D9488; /* Deep Teal */
+  background: rgba(13, 148, 136, 0.1); /* Light Teal background */
   transform: translateY(-2px);
-  background: rgba(37, 99, 235, 0.1);
 }
 
 .nav-item.active {
-  color: #2563eb;
-  background: rgba(37, 99, 235, 0.1);
+  color: #0D9488; /* Deep Teal */
+  background: rgba(13, 148, 136, 0.1); /* Light Teal background */
 }
 
 .nav-item.active::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: -2px; /* Adjusted for better visual */
   left: 50%;
   transform: translateX(-50%);
-  width: 20px;
-  height: 2px;
-  background: #2563eb;
-  border-radius: 1px;
+  width: 24px; /* Slightly wider */
+  height: 3px; /* Slightly thicker */
+  background: #0D9488; /* Deep Teal */
+  border-radius: 2px;
 }
 
 .nav-toggle {
@@ -81,12 +81,13 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #374151;
+  color: #334155; /* Dark Slate Blue */
   transition: color 0.3s ease;
+  font-size: 1.5rem; /* Ensure icon is visible */
 }
 
 .nav-toggle:hover {
-  color: #2563eb;
+  color: #0D9488; /* Deep Teal */
 }
 
 @media (max-width: 768px) {
@@ -99,7 +100,7 @@
     top: 70px;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(240, 253, 250, 0.98); /* Very Light Teal */
     backdrop-filter: blur(10px);
     flex-direction: column;
     padding: 2rem;
@@ -107,8 +108,8 @@
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease; /* Added visibility transition */
+    border-bottom: 1px solid #CBD5E1; /* Light Gray */
   }
 
   .nav-menu.active {
@@ -126,5 +127,9 @@
 
   .nav-toggle {
     display: block;
+  }
+
+  .nav-item.active::after {
+    display: none; /* Hide the underline for active items in mobile menu */
   }
 }

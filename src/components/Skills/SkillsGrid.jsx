@@ -1,5 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Coffee, // Java
+  Braces, // JavaScript
+  Atom,   // React
+  FileCode2, // HTML
+  Paintbrush, // CSS
+  Database, // SQL
+  Leaf,     // MongoDB
+  Binary,   // C
+  BarChartBig, // R
+  Code2     // Default
+} from 'lucide-react';
 import { skills } from '../../data/personalInfo';
 import './SkillsGrid.css';
 
@@ -48,18 +61,29 @@ const SkillsGrid = () => {
   };
 
   const getSkillIcon = (skillName) => {
-    const icons = {
-      'Java': '☕',
-      'JavaScript': '🟨',
-      'React': '⚛️',
-      'HTML': '🌐',
-      'CSS': '🎨',
-      'SQL': '🗄️',
-      'MongoDB': '🍃',
-      'C': '⚙️',
-      'R': '📊'
-    };
-    return icons[skillName] || '💻';
+    const iconSize = 48;
+    switch (skillName) {
+      case 'Java':
+        return <Coffee size={iconSize} />;
+      case 'JavaScript':
+        return <Braces size={iconSize} />;
+      case 'React':
+        return <Atom size={iconSize} />;
+      case 'HTML':
+        return <FileCode2 size={iconSize} />;
+      case 'CSS':
+        return <Paintbrush size={iconSize} />;
+      case 'SQL':
+        return <Database size={iconSize} />;
+      case 'MongoDB':
+        return <Leaf size={iconSize} />;
+      case 'C':
+        return <Binary size={iconSize} />;
+      case 'R':
+        return <BarChartBig size={iconSize} />;
+      default:
+        return <Code2 size={iconSize} />;
+    }
   };
 
   return (
