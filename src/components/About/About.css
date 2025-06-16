@@ -1,6 +1,6 @@
 .about {
   padding: 6rem 0;
-  background: #f8fafc;
+  background: #F0FDFA; /* Very Light Teal/Off-White */
 }
 
 .about-container {
@@ -17,7 +17,7 @@
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1f2937;
+  color: #334155; /* Dark Slate Blue */
   margin-bottom: 1rem;
   position: relative;
 }
@@ -30,13 +30,13 @@
   transform: translateX(-50%);
   width: 60px;
   height: 4px;
-  background: linear-gradient(45deg, #2563eb, #3b82f6);
+  background: #0D9488; /* Deep Teal */
   border-radius: 2px;
 }
 
 .section-subtitle {
   font-size: 1.1rem;
-  color: #6b7280;
+  color: #64748B; /* Slate Gray */
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -56,14 +56,14 @@
 .about-intro p {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #374151;
+  color: #334155; /* Dark Slate Blue */
   margin-bottom: 1.5rem;
 }
 
 .about-intro p:first-child {
   font-size: 1.2rem;
   font-weight: 500;
-  color: #1f2937;
+  color: #1E293B; /* Darker Slate Blue for emphasis */
 }
 
 .about-stats {
@@ -72,9 +72,10 @@
   gap: 2rem;
   margin-top: 3rem;
   padding: 2rem;
-  background: white;
+  background: #FFFFFF; /* White background for cards */
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Softer shadow */
+  border: 1px solid #E0F2F1; /* Light teal border */
 }
 
 .stat {
@@ -85,13 +86,13 @@
   display: block;
   font-size: 2rem;
   font-weight: 700;
-  color: #2563eb;
+  color: #0D9488; /* Deep Teal */
   margin-bottom: 0.5rem;
 }
 
 .stat-label {
   font-size: 0.9rem;
-  color: #6b7280;
+  color: #64748B; /* Slate Gray */
   font-weight: 500;
 }
 
@@ -105,28 +106,28 @@
   display: flex;
   gap: 1rem;
   padding: 1.5rem;
-  background: white;
+  background: #FFFFFF; /* White background */
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Softer shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #E0F2F1; /* Light teal border */
 }
 
 .highlight-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px) scale(1.02); /* Enhanced hover */
+  box-shadow: 0 12px 45px rgba(13, 148, 136, 0.15); /* Tealish shadow */
 }
 
 .highlight-icon {
   flex-shrink: 0;
   width: 50px;
   height: 50px;
-  background: linear-gradient(45deg, #2563eb, #3b82f6);
+  background: #FACC15; /* Vibrant Gold */
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #334155; /* Dark Slate Blue for icon */
 }
 
 .highlight-content {
@@ -136,13 +137,13 @@
 .highlight-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #1f2937;
+  color: #334155; /* Dark Slate Blue */
   margin-bottom: 0.5rem;
 }
 
 .highlight-description {
   font-size: 0.95rem;
-  color: #6b7280;
+  color: #64748B; /* Slate Gray */
   line-height: 1.5;
 }
 
