@@ -57,7 +57,7 @@ const Resume = () => {
               </div>
             </div>
 
-            <a href="/New_Updated_Resume_Rehan_Shaikh.pdf" download className="download-btn">
+            <a href="/Updated_Cv_Rehan_Shaikh.pdf" download className="download-btn">
               <Download size={20} />
               Download PDF Resume
             </a>

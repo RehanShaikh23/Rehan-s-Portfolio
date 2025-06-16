@@ -19,7 +19,7 @@ const Footer = () => {
     },
     {
       icon: <Mail size={20} />,
-      url: `mailto:${personalInfo.email}`,
+      url: 'https://mail.google.com/mail/?view=cm&fs=1&to=as9565704@gmail.com',
       label: 'Email'
     }
   ];
