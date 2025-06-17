@@ -1,7 +1,7 @@
 .skills-grid {
   padding: 6rem 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%); /* New Teal Gradient */
+  color: #F0FDFA; /* Very Light Teal/Off-White for base text */
   position: relative;
   overflow: hidden;
 }
@@ -13,7 +13,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(240, 253, 250, 0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>'); /* Adjusted dots color */
   opacity: 0.3;
 }
 
@@ -30,7 +30,7 @@
   margin-bottom: 3rem;
 }
 
-.section-title {
+.section-title { /* Already uses parent color, should be #F0FDFA */
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -45,13 +45,13 @@
   transform: translateX(-50%);
   width: 60px;
   height: 4px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(240, 253, 250, 0.8); /* Light Teal/Off-White underline */
   border-radius: 2px;
 }
 
 .section-subtitle {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(240, 253, 250, 0.9); /* Adjusted for new base text color */
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -67,25 +67,26 @@
 
 .category-btn {
   padding: 0.75rem 1.5rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  border: 2px solid rgba(240, 253, 250, 0.3); /* Light Teal/Off-White border */
+  background: rgba(240, 253, 250, 0.1); /* Light Teal/Off-White background */
+  color: #F0FDFA; /* Light Teal/Off-White text */
   border-radius: 25px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
   backdrop-filter: blur(10px);
 }
 
 .category-btn:hover {
-  border-color: rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(240, 253, 250, 0.6);
+  background: rgba(240, 253, 250, 0.2);
+  transform: translateY(-2px);
 }
 
 .category-btn.active {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(255, 255, 255, 0.9);
-  color: #667eea;
+  background: #FACC15; /* Vibrant Gold */
+  border-color: #FACC15; /* Vibrant Gold */
+  color: #334155; /* Dark Slate Blue text */
 }
 
 .skills-carousel {
@@ -112,13 +113,13 @@
 }
 
 .skill-card {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(240, 253, 250, 0.08); /* Slightly more transparent */
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(240, 253, 250, 0.15); /* Adjusted border */
   border-radius: 16px;
   padding: 2rem;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -130,8 +131,8 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.5s ease;
+  background: linear-gradient(90deg, transparent, rgba(240, 253, 250, 0.05), transparent); /* Adjusted shimmer */
+  transition: left 0.6s ease; /* Slightly slower shimmer */
 }
 
 .skill-card:hover::before {
@@ -139,22 +140,29 @@
 }
 
 .skill-card:hover {
-  transform: translateY(-10px);
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-10px) scale(1.03); /* Enhanced hover */
+  background: rgba(240, 253, 250, 0.12); /* Adjusted hover background */
+  border-color: rgba(240, 253, 250, 0.3); /* Adjusted hover border */
 }
 
 .skill-icon {
-  font-size: 3rem;
+  /* font-size: 3rem; /* Removed as SVG icons are sized via props */
   margin-bottom: 1rem;
-  display: block;
+  display: flex; /* Use flex to center the SVG icon easily */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically if needed, though SVGs might behave well */
+  color: #FACC15; /* Vibrant Gold for icons - Lucide icons inherit color */
+  /* Height might be needed if the icons don't take up space properly, 
+     or if margin auto on the icon itself is preferred. 
+     Let's assume direct sizing and flex centering is enough.
+     Consider adding a min-height if cards look uneven due to icon loading: e.g., min-height: 48px; */
 }
 
 .skill-name {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: white;
+  color: #F0FDFA; /* Very Light Teal/Off-White */
 }
 
 .skill-level {
@@ -164,7 +172,7 @@
 .level-bar {
   width: 100%;
   height: 8px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(240, 253, 250, 0.2); /* Light Teal/Off-White background for bar */
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 0.5rem;
@@ -172,32 +180,32 @@
 
 .level-fill {
   height: 100%;
-  background: linear-gradient(45deg, #fbbf24, #f59e0b);
+  background: linear-gradient(45deg, #FACC15, #EAB308); /* Vibrant Gold Gradient */
   border-radius: 4px;
   transition: width 1s ease;
   position: relative;
 }
 
-.level-fill::after {
+.level-fill::after { /* Shimmer effect on the gold bar */
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.25) 50%, transparent 70%);
   animation: shimmer 2s infinite;
 }
 
 .level-text {
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(240, 253, 250, 0.9); /* Light Teal/Off-White text */
 }
 
 .skill-category {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(240, 253, 250, 0.7); /* Light Teal/Off-White text, slightly more transparent */
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 500;
@@ -207,9 +215,9 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
+  background: rgba(240, 253, 250, 0.15); /* Light Teal/Off-White background */
+  border: 1px solid rgba(240, 253, 250, 0.25); /* Light Teal/Off-White border */
+  color: #F0FDFA; /* Light Teal/Off-White icon color */
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -217,14 +225,15 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(10px);
   z-index: 2;
 }
 
 .carousel-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(240, 253, 250, 0.25);
   transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
 .carousel-btn.prev {
@@ -246,14 +255,14 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(240, 253, 250, 0.3); /* Light Teal/Off-White indicator */
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .indicator.active {
-  background: rgba(255, 255, 255, 0.8);
+  background: #FACC15; /* Vibrant Gold for active indicator */
   transform: scale(1.2);
 }
 
@@ -277,13 +286,13 @@
   display: block;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #fbbf24;
+  color: #FACC15; /* Vibrant Gold */
   margin-bottom: 0.5rem;
 }
 
 .stat-label {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(240, 253, 250, 0.8); /* Light Teal/Off-White text */
   font-weight: 500;
 }
 

@@ -19,13 +19,18 @@ const Footer = () => {
     },
     {
       icon: <Mail size={20} />,
-      url: 'https://mail.google.com/mail/?view=cm&fs=1&to=as9565704@gmail.com',
-      label: 'Email'
+      url: `https://mail.google.com/mail/?view=cm&to=${personalInfo.email}`,
+      label: 'Email',
+      isEmail: true
     }
   ];
 
-  const handleSocialClick = (url) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
+  const handleSocialClick = (link) => {
+    if (link.isEmail) {
+      window.open(link.url, '_blank', 'noopener,noreferrer');
+    } else {
+      window.open(link.url, '_blank', 'noopener,noreferrer');
+    }
   };
 
   return (
@@ -42,7 +47,7 @@ const Footer = () => {
               <button
                 key={index}
                 className="social-link"
-                onClick={() => handleSocialClick(link.url)}
+                onClick={() => handleSocialClick(link)}
                 aria-label={link.label}
               >
                 {link.icon}

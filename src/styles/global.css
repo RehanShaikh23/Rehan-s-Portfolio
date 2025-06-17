@@ -15,8 +15,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
-  color: #333;
-  background-color: #ffffff;
+  color: #334155; /* Dark Slate Blue */
+  background-color: #F0FDFA; /* Very Light Teal/Off-White */
 }
 
 /* App Layout */
@@ -66,13 +66,14 @@ p {
 
 /* Links */
 a {
-  color: #2563eb;
+  color: #0D9488; /* Deep Teal */
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 a:hover {
-  color: #1d4ed8;
+  color: #0F766E; /* Darker Teal for hover */
+  text-decoration: underline;
 }
 
 /* Buttons */
@@ -85,7 +86,7 @@ button {
 }
 
 button:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid #0D9488; /* Deep Teal */
   outline-offset: 2px;
 }
 
@@ -142,21 +143,21 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #E0F2F1; /* Lighter teal for scrollbar track */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: #A7F3D0; /* Light teal for scrollbar thumb */
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+  background: #6EE7B7; /* Medium teal for scrollbar thumb hover */
 }
 
 /* Focus Styles for Accessibility */
 *:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid #0D9488; /* Deep Teal */
   outline-offset: 2px;
 }
 
@@ -233,5 +234,9 @@ img {
   
   h3 {
     font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 0.95rem; /* Slightly reduce paragraph font size for very small screens */
   }
 }
