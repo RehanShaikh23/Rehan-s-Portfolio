@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Code, Database, Globe, Zap } from 'lucide-react';
 import { personalInfo } from '../../data/personalInfo';
 import './About.css';
 
 const About = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [counters, setCounters] = useState({ projects: 0, experience: 0 });
+  const sectionRef = useRef(null);
+
   const highlights = [
     {
       icon: <Code size={24} />,
@@ -27,8 +31,47 @@ const About = () => {
     }
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          startCounterAnimations();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const startCounterAnimations = () => {
+    const animateCounter = (target, key) => {
+      let start = 0;
+      const increment = target / 50;
+
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+          start = target;
+          clearInterval(timer);
+        }
+        setCounters(prev => ({ ...prev, [key]: Math.floor(start) }));
+      }, 30);
+    };
+
+    setTimeout(() => {
+      animateCounter(20, 'projects');
+      animateCounter(2, 'experience');
+    }, 500);
+  };
+
   return (
-    <section className="about">
+    <section className="about" ref={sectionRef}>
       <div className="about-container">
         <div className="about-header">
           <h2 className="section-title">About Me</h2>
@@ -36,37 +79,34 @@ const About = () => {
             Passionate developer with a love for creating innovative solutions
           </p>
         </div>
-
         <div className="about-content">
           <div className="about-text">
             <div className="about-intro">
               <p>
-                Hello! I'm {personalInfo.name}, a dedicated full-stack developer based in {personalInfo.location}. 
+                Hello! I'm {personalInfo.name}, a dedicated full-stack developer based in {personalInfo.location}.
                 I specialize in creating modern, responsive web applications that deliver exceptional user experiences.
               </p>
               <p>
-                My journey in software development began with a curiosity about how things work behind the scenes. 
+                My journey in software development began with a curiosity about how things work behind the scenes.
                 This curiosity has evolved into a passion for building scalable, efficient solutions using cutting-edge technologies.
               </p>
               <p>
-                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, 
-                or sharing knowledge with the developer community. I believe in continuous learning and staying updated 
+                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects,
+                or sharing knowledge with the developer community. I believe in continuous learning and staying updated
                 with the latest industry trends.
               </p>
             </div>
-
             <div className="about-stats">
               <div className="stat">
-                <span className="stat-number">15+</span>
+                <span className="stat-number">{counters.projects}+</span>
                 <span className="stat-label">Projects Completed</span>
               </div>
               <div className="stat">
-                <span className="stat-number">2</span>
+                <span className="stat-number">{counters.experience}</span>
                 <span className="stat-label">Months Experience</span>
               </div>
             </div>
           </div>
-
           <div className="about-highlights">
             {highlights.map((highlight, index) => (
               <div key={index} className="highlight-card">

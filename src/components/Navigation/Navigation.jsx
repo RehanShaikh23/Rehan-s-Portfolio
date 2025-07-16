@@ -1,104 +1,222 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, User, Briefcase, Code, FileText, Mail, Menu, X } from 'lucide-react';
+import {
+  Home,
+  User,
+  Briefcase,
+  Code,
+  FileText,
+  Mail,
+  Menu,
+  X,
+  FolderOpen, 
+} from 'lucide-react';
 import { personalInfo } from '../../data/personalInfo';
 import './Navigation.css';
 
 const Navigation = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const location = useLocation();
+  const navRef = useRef(null);
+  const menuRef = useRef(null);
 
   const navItems = [
-    { name: 'Home', path: '/', icon: Home },
-    { name: 'About', path: '/about', icon: User },
-    { name: 'Projects', path: '/projects', icon: Briefcase },
-    { name: 'Skills', path: '/skills', icon: Code },
-    { name: 'Resume', path: '/resume', icon: FileText },
-    { name: 'Contact', path: '/contact', icon: Mail }
+    { path: '/', label: 'Home', icon: Home },
+    { path: '/about', label: 'About', icon: User },
+    { path: '/projects', label: 'Projects', icon: FolderOpen },
+    { path: '/skills', label: 'Skills', icon: Code },
+    { path: '/resume', label: 'Resume', icon: FileText },
+    { path: '/contact', label: 'Contact', icon: Mail },
   ];
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const handleScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = Math.min(currentScrollY / documentHeight, 1);
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
+    setIsScrolled(currentScrollY > 50);
+    setScrollProgress(progress);
 
-  // Close mobile menu when route changes
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      setIsHidden(true);
+    } else {
+      setIsHidden(false);
+    }
+
+    setLastScrollY(currentScrollY);
+  }, [lastScrollY]);
+
   useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location]);
+    let ticking = false;
 
-  // Close mobile menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (isMobileMenuOpen && !event.target.closest('.navigation')) {
-        setIsMobileMenuOpen(false);
+    const scrollListener = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, [isMobileMenuOpen]);
+    window.addEventListener('scroll', scrollListener, { passive: true });
+    return () => window.removeEventListener('scroll', scrollListener);
+  }, [handleScroll]);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+
+      if (isMenuOpen && e.key === 'Tab') {
+        const focusableElements = menuRef.current?.querySelectorAll(
+          'a, button, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusableElements?.length) {
+          const first = focusableElements[0];
+          const last = focusableElements[focusableElements.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    },
+    [isMenuOpen]
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => {
+      if ('vibrate' in navigator && !prev) navigator.vibrate(50);
+      return !prev;
+    });
+  };
+
+  const handleOverlayClick = useCallback((e) => {
+    if (e.target === e.currentTarget) setIsMenuOpen(false);
+  }, []);
+
+  const handleLinkClick = (path) => {
+    setIsMenuOpen(false);
+    if (location.pathname === path) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const getNavIcon = (Icon, isActive) => (
+    <Icon size={18} strokeWidth={isActive ? 2.5 : 2} className="nav-item-icon" />
+  );
 
   return (
-    <nav className="navigation">
-      <div className="nav-container">
-        <Link to="/" className="nav-logo">
-          {personalInfo.name}
-        </Link>
+    <>
+      <nav
+        ref={navRef}
+        className={`navigation ${isScrolled ? 'scrolled' : ''} ${isHidden ? 'hidden' : ''} ${isLoaded ? 'loaded' : ''}`}
+        style={{ '--scroll-progress': scrollProgress }}
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <div className="nav-container">
+          <Link
+            to="/"
+            className="nav-logo"
+            onClick={() => handleLinkClick('/')}
+            aria-label="Rehan Shaikh - Home"
+          >
+            <span className="logo-text">{personalInfo.name}</span>
+            <span className="logo-dot"></span>
+          </Link>
 
-        <ul className="nav-menu">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = location.pathname === item.path;
-            
-            return (
-              <li key={item.name} className="nav-item">
-                <Link
-                  to={item.path}
-                  className={`nav-link ${isActive ? 'active' : ''}`}
-                >
-                  <Icon size={18} />
-                  {item.name}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-
-        <button
-          className="mobile-menu-btn"
-          onClick={toggleMobileMenu}
-          aria-label="Toggle mobile menu"
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
-        <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
-          <ul className="mobile-nav-menu">
-            {navItems.map((item) => {
-              const Icon = item.icon;
+          <div
+            ref={menuRef}
+            className={`nav-menu ${isMenuOpen ? 'active' : ''}`}
+            role="menubar"
+            aria-hidden={!isMenuOpen}
+          >
+            {navItems.map((item, index) => {
               const isActive = location.pathname === item.path;
-              
               return (
-                <li key={item.name}>
-                  <Link
-                    to={item.path}
-                    className={`mobile-nav-link ${isActive ? 'active' : ''}`}
-                    onClick={closeMobileMenu}
-                  >
-                    <Icon size={20} />
-                    {item.name}
-                  </Link>
-                </li>
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`nav-item ${isActive ? 'active' : ''}`}
+                  onClick={() => handleLinkClick(item.path)}
+                  style={{
+                    animationDelay: isMenuOpen ? `${index * 0.1}s` : '0s',
+                    '--item-index': index,
+                  }}
+                  role="menuitem"
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {getNavIcon(item.icon, isActive)}
+                  <span className="nav-item-text">{item.label}</span>
+                  {isActive && <span className="nav-item-indicator" aria-hidden="true" />}
+                </Link>
               );
             })}
-          </ul>
+          </div>
+
+          <button
+            className={`nav-toggle ${isMenuOpen ? 'active' : ''}`}
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isMenuOpen}
+            aria-controls="nav-menu"
+            type="button"
+          >
+            <div className="nav-toggle-icon">
+              <span className="nav-toggle-line" aria-hidden="true"></span>
+              <span className="nav-toggle-line" aria-hidden="true"></span>
+              <span className="nav-toggle-line" aria-hidden="true"></span>
+            </div>
+            <span className="nav-toggle-text sr-only">
+              {isMenuOpen ? 'Close menu' : 'Open menu'}
+            </span>
+          </button>
         </div>
-      </div>
-    </nav>
+
+        <div
+          className="nav-progress"
+          style={{ transform: `scaleX(${scrollProgress})` }}
+          aria-hidden="true"
+        />
+      </nav>
+
+      {isMenuOpen && (
+        <div className="nav-overlay" onClick={handleOverlayClick} aria-hidden="true" role="presentation" />
+      )}
+    </>
   );
 };
 
