@@ -2,14 +2,16 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, #0D9488 0%, #0F766E 50%, #134E4A 100%);
-  color: #F0FDFA;
+  background: linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #134e4a 100%);
+  color: #f0fdfa;
   position: relative;
   overflow: hidden;
+  /* Add padding-top to account for fixed navbar */
+  padding-top: 80px; /* Navbar height + extra spacing */
 }
 
 .hero::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -20,7 +22,7 @@
 }
 
 .hero::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   right: -20%;
@@ -38,6 +40,7 @@
   padding: 0 2rem;
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 
 .hero-content {
@@ -45,7 +48,8 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
-  min-height: 80vh;
+  /* Remove min-height since we're using padding-top on hero */
+  padding: 2rem 0;
 }
 
 .hero-text {
@@ -63,7 +67,7 @@
 }
 
 .hero-name {
-  background: linear-gradient(135deg, #FACC15 0%, #EAB308 50%, #F59E0B 100%);
+  background: linear-gradient(135deg, #facc15 0%, #eab308 50%, #f59e0b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -72,13 +76,13 @@
 }
 
 .hero-name::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, #FACC15, #EAB308);
+  background: linear-gradient(90deg, #facc15, #eab308);
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: left;
@@ -126,7 +130,7 @@
 }
 
 .btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -141,15 +145,15 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #FACC15 0%, #EAB308 100%);
-  color: #1E293B;
+  background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+  color: #1e293b;
   border: 1px solid rgba(250, 204, 21, 0.3);
   box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #EAB308 0%, #D97706 100%);
-  color: #0F172A;
+  background: linear-gradient(135deg, #eab308 0%, #d97706 100%);
+  color: #0f172a;
   transform: translateY(-4px) scale(1.05);
   box-shadow: 0 15px 40px rgba(251, 191, 36, 0.4);
   text-decoration: none;
@@ -157,7 +161,7 @@
 
 .btn-secondary {
   background: rgba(240, 253, 250, 0.1);
-  color: #F0FDFA;
+  color: #f0fdfa;
   border: 2px solid rgba(240, 253, 250, 0.3);
   backdrop-filter: blur(20px);
 }
@@ -165,7 +169,7 @@
 .btn-secondary:hover {
   background: rgba(240, 253, 250, 0.2);
   border-color: rgba(240, 253, 250, 0.6);
-  color: #FFFFFF;
+  color: #ffffff;
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 12px 35px rgba(240, 253, 250, 0.2);
   text-decoration: none;
@@ -188,7 +192,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #F0FDFA;
+  color: #f0fdfa;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(20px);
@@ -197,7 +201,7 @@
 }
 
 .social-icon::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(13, 148, 136, 0.2) 100%);
@@ -337,7 +341,8 @@
 }
 
 @keyframes scrollPulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.8;
     transform: translateY(0);
   }
@@ -348,7 +353,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
@@ -357,7 +363,8 @@
 }
 
 @keyframes backdropFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) scale(1);
   }
   50% {
@@ -367,10 +374,14 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+  .hero {
+    padding-top: 70px; /* Adjust for smaller navbar */
+  }
+
   .hero-content {
     gap: 3rem;
   }
-  
+
   .image-container {
     width: 320px;
     height: 320px;
@@ -378,44 +389,53 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding-top: 80px; /* More space needed on mobile */
+  }
+
   .hero-content {
     grid-template-columns: 1fr;
     gap: 2.5rem;
     text-align: center;
+    padding: 1rem 0;
   }
-  
+
   .hero-title {
     font-size: clamp(2rem, 8vw, 3rem);
+    margin-bottom: 1rem; /* Reduce margin for mobile */
   }
-  
+
   .hero-subtitle {
     font-size: 1.4rem;
+    margin-bottom: 1.5rem; /* Reduce margin */
   }
-  
+
   .hero-description {
     font-size: 1.1rem;
     max-width: 100%;
+    margin-bottom: 2rem; /* Reduce margin */
   }
-  
+
   .hero-actions {
     justify-content: center;
     gap: 1rem;
+    margin-bottom: 2rem; /* Reduce margin */
   }
-  
+
   .btn {
     padding: 1rem 2rem;
     font-size: 1rem;
   }
-  
+
   .image-container {
     width: 280px;
     height: 280px;
   }
-  
+
   .hero-social {
     justify-content: center;
   }
-  
+
   .social-icon {
     width: 50px;
     height: 50px;
@@ -423,47 +443,56 @@
 }
 
 @media (max-width: 480px) {
+  .hero {
+    padding-top: 90px; /* Even more space for very small screens */
+  }
+
   .hero-container {
     padding: 0 1rem;
   }
-  
+
+  .hero-content {
+    padding: 0.5rem 0;
+  }
+
   .hero-title {
     font-size: clamp(1.8rem, 10vw, 2.5rem);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
   }
-  
+
   .hero-description {
     font-size: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
-  
+
   .hero-actions {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    margin-bottom: 1.5rem;
   }
-  
+
   .btn {
     width: 100%;
     max-width: 280px;
     justify-content: center;
     padding: 1rem 1.5rem;
   }
-  
+
   .image-container {
     width: 240px;
     height: 240px;
   }
-  
+
   .hero-social {
     gap: 1rem;
   }
-  
+
   .social-icon {
     width: 45px;
     height: 45px;
@@ -471,20 +500,27 @@
 }
 
 @media (max-width: 375px) {
+  .hero {
+    padding-top: 100px; /* Maximum space for very small screens */
+  }
+
   .hero-title {
     font-size: clamp(1.6rem, 12vw, 2.2rem);
     word-wrap: break-word;
     white-space: normal;
+    margin-bottom: 0.6rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1.1rem;
+    margin-bottom: 1rem;
   }
-  
+
   .hero-description {
     font-size: 0.95rem;
+    margin-bottom: 1.2rem;
   }
-  
+
   .image-container {
     width: 200px;
     height: 200px;
@@ -501,19 +537,19 @@
     opacity: 1;
     transform: none;
   }
-  
+
   .hero-name::after {
     animation: none;
     transform: scaleX(1);
   }
-  
+
   .btn,
   .social-icon,
   .profile-image,
   .scroll-indicator {
     transition: none;
   }
-  
+
   .hero::after,
   .image-backdrop,
   .scroll-line {
@@ -526,19 +562,19 @@
   .hero {
     background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
   }
-  
+
   .hero-name {
     background: #ffffff;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
+
   .btn-primary {
     background: #ffffff;
     color: #000000;
   }
-  
+
   .btn-secondary {
     border-color: #ffffff;
     color: #ffffff;
