@@ -5,7 +5,7 @@ import './About.css';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [counters, setCounters] = useState({ projects: 0, experience: 0 });
+  const [counters, setCounters] = useState({ projects: 30, experience: 3 });
   const sectionRef = useRef(null);
 
   const highlights = [

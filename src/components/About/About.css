@@ -138,40 +138,57 @@
   transform: translateY(-5px);
 }
 
+/* Fixed stat-number styles for better visibility */
 .stat-number {
   display: block;
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
   transition: transform 0.3s ease;
-  color: #0f766e; 
-   text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  /* Fallback solid color for better visibility */
+  color: #0f766e;
+  text-shadow: 0 2px 4px rgba(15, 118, 110, 0.2);
+  /* Enhanced gradient with better fallback */
+  background: linear-gradient(135deg, #0f766e 0%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* Ensure visibility in all browsers */
+  position: relative;
 }
 
-@supports (-webkit-background-clip: text) {
+/* Fallback for browsers that don't support background-clip */
+@supports not (-webkit-background-clip: text) {
   .stat-number {
-    background: linear-gradient(135deg, #0f766e 0%, #0ea5e9 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
+    color: #0f766e !important;
+    background: none !important;
+    -webkit-text-fill-color: unset !important;
   }
 }
-
 
 .stat:hover .stat-number {
   transform: scale(1.1);
 }
 
+/* Enhanced stat-label styles for better visibility */
 .stat-label {
-  font-size: 0.95rem;
-  color: #334155;
-  font-weight: 600;
+  font-size: 1rem;
+  color: #1e293b;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  /* Added text shadow for better readability */
+  text-shadow: 0 1px 2px rgba(30, 41, 59, 0.1);
+  /* Enhanced contrast */
+  opacity: 0.9;
+  transition: all 0.3s ease;
 }
 
-
+.stat:hover .stat-label {
+  color: #0f766e;
+  opacity: 1;
+  transform: translateY(-2px);
+}
 
 .about-highlights {
   display: flex;
@@ -267,7 +284,6 @@
   color: #475569;
 }
 
-
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -288,7 +304,6 @@
     transform: translateX(0);
   }
 }
-
 
 @media (max-width: 1024px) {
   .about-content {
@@ -393,7 +408,6 @@
     font-size: 0.95rem;
   }
 }
-
 
 @media (prefers-reduced-motion: reduce) {
   .about-header,
