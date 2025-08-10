@@ -43,8 +43,8 @@ const Resume = () => {
       
       // Create a link element and trigger download
       const link = document.createElement('a');
-      link.href = '/Rehan_Shaikh_CV_1.pdf';
-      link.download = 'Rehan_Shaikh_CV_1.pdf';
+      link.href = '/Rehan_Shaikh_CV.pdf';
+      link.download = 'Rehan_Shaikh_CV.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -113,7 +113,7 @@ const Resume = () => {
 
   const achievements = [
     {
-      text: "Completed 20+ successful projects",
+      text: "Completed 30+ successful projects",
       icon: "🚀"
     },
     {

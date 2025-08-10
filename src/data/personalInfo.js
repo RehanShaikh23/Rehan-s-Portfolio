@@ -1,6 +1,6 @@
 export const personalInfo = {
   name: "Rehan Shaikh",
-  email: "as9565704@gmail.com",
+  email: "rehanshaikh.dev@gmail.com",
   phone: "+91 9307295471",
   github: "https://github.com/RehanShaikh23",
   linkedin: "https://www.linkedin.com/in/rehan-shaikh23-5a1206318",

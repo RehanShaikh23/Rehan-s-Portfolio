@@ -6,7 +6,7 @@ import ContactForm from '../components/Contact/ContactForm';
 
 jest.mock('../data/personalInfo', () => ({
   personalInfo: {
-    email: 'as9565704@gmail.com',
+    email: 'rehanshaikh.dev@gmail.com',
     phone: '+91 9307295471',
     location: 'India, Pune'
   }
@@ -27,7 +27,7 @@ describe('ContactForm', () => {
   test('displays contact information correctly', () => {
     render(<ContactForm />);
     
-    expect(screen.getByText('as9565704@gmail.com')).toBeInTheDocument();
+    expect(screen.getByText('rehanshaikh.dev@gmail.com')).toBeInTheDocument();
     expect(screen.getByText('+91 9307295471')).toBeInTheDocument();
     expect(screen.getByText('India, Pune')).toBeInTheDocument();
   });
@@ -53,13 +53,13 @@ describe('ContactForm', () => {
     const subjectInput = screen.getByLabelText(/subject/i);
     const messageInput = screen.getByLabelText(/message/i);
     
-    await user.type(nameInput, 'John Doe');
-    await user.type(emailInput, 'john@example.com');
+    await user.type(nameInput, 'Rehan Shaikh');
+    await user.type(emailInput, 'rehan@example.com');
     await user.type(subjectInput, 'Test Subject');
     await user.type(messageInput, 'Test message content');
     
-    expect(nameInput).toHaveValue('John Doe');
-    expect(emailInput).toHaveValue('john@example.com');
+    expect(nameInput).toHaveValue('Rehan Shaikh');
+    expect(emailInput).toHaveValue('rehan@example.com');
     expect(subjectInput).toHaveValue('Test Subject');
     expect(messageInput).toHaveValue('Test message content');
   });
@@ -69,8 +69,8 @@ describe('ContactForm', () => {
     render(<ContactForm />);
     
     // Fill out the form
-    await user.type(screen.getByLabelText(/full name/i), 'John Doe');
-    await user.type(screen.getByLabelText(/email address/i), 'john@example.com');
+    await user.type(screen.getByLabelText(/full name/i), 'Rehan Shaikh');
+    await user.type(screen.getByLabelText(/email address/i), 'rehan@example.com');
     await user.type(screen.getByLabelText(/subject/i), 'Test Subject');
     await user.type(screen.getByLabelText(/message/i), 'Test message content');
     
@@ -92,8 +92,8 @@ describe('ContactForm', () => {
     render(<ContactForm />);
     
     // Fill out the form
-    await user.type(screen.getByLabelText(/full name/i), 'John Doe');
-    await user.type(screen.getByLabelText(/email address/i), 'john@example.com');
+    await user.type(screen.getByLabelText(/full name/i), 'Rehan Shaikh');
+    await user.type(screen.getByLabelText(/email address/i), 'rehan@example.com');
     await user.type(screen.getByLabelText(/subject/i), 'Test Subject');
     await user.type(screen.getByLabelText(/message/i), 'Test message content');
     
@@ -116,8 +116,8 @@ describe('ContactForm', () => {
     const messageInput = screen.getByLabelText(/message/i);
     
     // Fill out the form
-    await user.type(nameInput, 'John Doe');
-    await user.type(emailInput, 'john@example.com');
+    await user.type(nameInput, 'Rehan Shaikh');
+    await user.type(emailInput, 'rehan@example.com');
     await user.type(subjectInput, 'Test Subject');
     await user.type(messageInput, 'Test message content');
     
@@ -145,8 +145,8 @@ describe('ContactForm', () => {
     render(<ContactForm />);
     
     // Fill out and submit form
-    await user.type(screen.getByLabelText(/full name/i), 'John Doe');
-    await user.type(screen.getByLabelText(/email address/i), 'john@example.com');
+    await user.type(screen.getByLabelText(/full name/i), 'Rehan Shaikh');
+    await user.type(screen.getByLabelText(/email address/i), 'rehan@example.com');
     await user.type(screen.getByLabelText(/subject/i), 'Test Subject');
     await user.type(screen.getByLabelText(/message/i), 'Test message content');
     
