@@ -201,7 +201,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Rehan Shaikh** - Full Stack Java Developer
 
-- 📧 **Email**: [as9565704@gmail.com](mailto:as9565704@gmail.com)
+- 📧 **Email**: [rehanshaikh.dev@gmail.com](mailto:rehanshaikh.dev@gmail.com)
 - 💼 **LinkedIn**: [rehan-shaikh23](https://www.linkedin.com/in/rehan-shaikh23-5a1206318)
 - 🐱 **GitHub**: [RehanShaikh23](https://github.com/RehanShaikh23)
 - 📱 **Phone**: +91 9307295471
