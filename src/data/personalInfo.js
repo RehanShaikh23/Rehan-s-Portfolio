@@ -40,4 +40,21 @@ export const projects = [
     liveUrl: "https://group-management-final.vercel.app/",
     category: "Web Application"
   },
+  {
+    id: 2,
+    title: "AI-Powered Smart Recruitment System (Backend)",
+    description: "A backend system to streamline recruitment with AI-driven insights, secure authentication, and integrated communication tools.",
+    image: "https://continusys.com/wp-content/uploads/2023/08/How-an-integrated-HR-system-supports-recruitment-and-onboarding-1-768x432.jpg",
+    technologies: ["Java", "Spring Boot", "MySQL", "JWT", "Google Calendar API", "Twilio", "WebSocket"],
+    features: [
+      "Role-based Authentication (Recruiter & Candidate)",
+      "AI-powered Resume Scoring & Skill Gap Analysis",
+      "Google Calendar OAuth Integration for Interview Scheduling",
+      "Real-time Notifications (Email, SMS, Slack, WebSocket)",
+      "Analytics Dashboard for Recruitment Insights"
+    ],
+    githubUrl: "https://github.com/RehanShaikh23/smart-recruitment-system.git",
+    liveUrl: "",
+    category: "Backend Application"
+  },
 ];
