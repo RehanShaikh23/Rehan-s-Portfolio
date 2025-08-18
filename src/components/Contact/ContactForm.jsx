@@ -154,7 +154,7 @@ const ContactForm = () => {
             <div className="response-time">
               <div className="response-indicator">
                 <div className="indicator-dot"></div>
-                <span>Usually responds within 24 hours</span>
+                <span>As Soon As Possible Thank You! 😊</span>
               </div>
             </div>
           </div>

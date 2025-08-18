@@ -6,7 +6,7 @@ import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import emailjs from '@emailjs/browser';
 import './styles/global.css';
 
-// Lazy load pages with better error handling
+
 const Home = React.lazy(() => 
   import('./pages/Home').catch(() => ({ default: () => <div className="error-page">Error loading Home page</div> }))
 );
@@ -26,7 +26,7 @@ const Contact = React.lazy(() =>
   import('./pages/Contact').catch(() => ({ default: () => <div className="error-page">Error loading Contact page</div> }))
 );
 
-// Enhanced Loading Component
+
 const EnhancedLoadingSpinner = ({ message = "Loading..." }) => (
   <div className="loading-container">
     <LoadingSpinner />
@@ -34,12 +34,12 @@ const EnhancedLoadingSpinner = ({ message = "Loading..." }) => (
   </div>
 );
 
-// Route change tracker component
+
 const RouteChangeTracker = () => {
   const location = useLocation();
   
   useEffect(() => {
-    // Update document title based on route
+    
     const routeTitles = {
       '/': 'Home - Rehan Shaikh | Full Stack Developer',
       '/about': 'About - Rehan Shaikh | Full Stack Developer',
@@ -51,7 +51,7 @@ const RouteChangeTracker = () => {
     
     document.title = routeTitles[location.pathname] || 'Rehan Shaikh | Full Stack Developer';
     
-    // Update meta description
+    
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       const descriptions = {
@@ -65,14 +65,14 @@ const RouteChangeTracker = () => {
       metaDescription.setAttribute('content', descriptions[location.pathname] || descriptions['/']);
     }
     
-    // Smooth scroll to top on route change
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location]);
   
   return null;
 };
 
-// Simple Error Boundary Component
+
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -117,7 +117,7 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-// 404 Not Found Component
+
 const NotFound = () => (
   <div className="not-found">
     <div className="not-found-content">
@@ -129,12 +129,12 @@ const NotFound = () => (
   </div>
 );
 
-// Main App Component
+
 function App() {
   const [isAppLoaded, setIsAppLoaded] = useState(false);
   const [emailJsStatus, setEmailJsStatus] = useState('loading');
 
-  // Enhanced EmailJS initialization
+  
   const initializeEmailJS = useCallback(async () => {
     try {
       emailjs.init('EHogLe3GJZ-0mSNHy');
@@ -146,29 +146,29 @@ function App() {
     }
   }, []);
 
-  // App initialization
+  
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        // Initialize EmailJS
+       
         await initializeEmailJS();
         
-        // Small delay for smooth loading experience
-        await new Promise(resolve => setTimeout(resolve, 500));
         
-        // Mark app as loaded
+        await new Promise(resolve => setTimeout(resolve, 4000));
+        
+        
         setIsAppLoaded(true);
         
       } catch (error) {
         console.error('App initialization error:', error);
-        setIsAppLoaded(true); // Still show app even if initialization fails
+        setIsAppLoaded(true); 
       }
     };
 
     initializeApp();
   }, [initializeEmailJS]);
 
-  // Show loading screen while app initializes
+  
   if (!isAppLoaded) {
     return (
       <div className="app-loading">
@@ -181,13 +181,13 @@ function App() {
     <Router>
       <ErrorBoundary>
         <div className="app">
-          {/* Global route change tracker */}
+         
           <RouteChangeTracker />
           
-          {/* Navigation */}
+          
           <Navigation />
           
-          {/* Main content */}
+          
           <main className="main-content" role="main">
             <Suspense 
               fallback={
@@ -203,20 +203,16 @@ function App() {
                 <Route path="/skills" element={<Skills />} />
                 <Route path="/resume" element={<Resume />} />
                 <Route path="/contact" element={<Contact />} />
-                
-                {/* 404 Route */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
           </main>
           
-          {/* Footer */}
           <Footer />
           
-          {/* EmailJS status indicator (development only) */}
+         
           {process.env.NODE_ENV === 'development' && (
             <div className={`emailjs-status ${emailJsStatus}`}>
-              EmailJS: {emailJsStatus}
             </div>
           )}
         </div>
