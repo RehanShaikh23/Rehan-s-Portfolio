@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 import { personalInfo } from '../../data/personalInfo';
+import { SparklesCore } from '../ui/sparkles';
 import './Footer.css';
 
 const Footer = () => {
@@ -63,6 +64,20 @@ const Footer = () => {
 
   return (
     <footer className="footer" ref={footerRef}>
+      {/* Sparkles Background */}
+      <div className="footer-sparkles">
+        <SparklesCore
+          id="footer-sparkles"
+          background="transparent"
+          minSize={0.4}
+          maxSize={1.2}
+          particleDensity={80}
+          className="w-full h-full"
+          particleColor="#3b82f6"
+          speed={0.8}
+        />
+      </div>
+      
       <div className="footer-container">
         <div className={`footer-content ${isVisible ? 'animate-in' : ''}`}>
           <div className="footer-brand">
@@ -99,13 +114,6 @@ const Footer = () => {
         </div>
       </div>
 
-      
-      <div className="footer-particles">
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-      </div>
     </footer>
   );
 };
