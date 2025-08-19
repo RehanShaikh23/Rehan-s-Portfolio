@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 import { personalInfo } from '../../data/personalInfo';
-import { SparklesCore } from '../ui/sparkles';
+import LightRays from '../LightRays/LightRays'; 
 import './Footer.css';
 
 const Footer = () => {
@@ -64,17 +64,19 @@ const Footer = () => {
 
   return (
     <footer className="footer" ref={footerRef}>
-      {/* Sparkles Background */}
-      <div className="footer-sparkles">
-        <SparklesCore
-          id="footer-sparkles"
-          background="transparent"
-          minSize={0.4}
-          maxSize={1.2}
-          particleDensity={80}
-          className="w-full h-full"
-          particleColor="#3b82f6"
-          speed={0.8}
+      {/* LightRays Background */}
+      <div className="footer-lightrays">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#3b82f6"
+          raysSpeed={1.2}
+          lightSpread={0.6}
+          rayLength={1.5}
+          followMouse={true}
+          mouseInfluence={0.08}
+          noiseAmount={0.12}
+          distortion={0.03}
+          className="footer-rays"
         />
       </div>
       
@@ -113,7 +115,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-
     </footer>
   );
 };

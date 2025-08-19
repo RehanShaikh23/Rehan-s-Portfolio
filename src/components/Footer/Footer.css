@@ -1,9 +1,15 @@
 .footer {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  background-color:#000000 !important;
   color: white;
   padding: 4rem 0 2rem;
   position: relative;
   overflow: hidden;
+}
+
+.footer.footer{
+  background: black !important;
+  background-color: black !important;
+  background-image: none !important;
 }
 
 .footer-sparkles {
@@ -391,4 +397,28 @@
   .footer-divider {
     background: #ffffff;
   }
+}
+
+/* LightRays Background Styling */
+.footer-lightrays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0.4;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.footer-rays {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Update existing z-index to ensure proper layering */
+.footer-container {
+  position: relative;
+  z-index: 2; /* Above light rays */
 }
