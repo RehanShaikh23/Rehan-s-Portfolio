@@ -9,7 +9,6 @@
 .footer.footer{
   background: black !important;
   background-color: black !important;
-  background-image: none !important;
 }
 
 .footer-sparkles {
@@ -421,4 +420,58 @@
 .footer-container {
   position: relative;
   z-index: 2; /* Above light rays */
+}
+
+/* Mobile-specific LightRays adjustments */
+@media (max-width: 768px) {
+  .footer-lightrays {
+    opacity: 0.8 !important; /* Higher opacity on mobile */
+    z-index: 1;
+  }
+  
+  .mobile-rays {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 400px; /* Ensure minimum height */
+  }
+  
+  /* Ensure WebGL canvas renders properly on mobile */
+  .footer-lightrays canvas {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 400px !important;
+    display: block !important;
+  }
+}
+
+/* For touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .footer-lightrays {
+    opacity: 0.9 !important;
+  }
+}
+
+/* CSS-only light effect fallback for mobile */
+@media (max-width: 768px) {
+  .footer-lightrays::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      ellipse at center top,
+      rgba(59, 130, 246, 0.3) 0%,
+      rgba(59, 130, 246, 0.1) 30%,
+      transparent 70%
+    );
+    animation: mobileLightPulse 3s ease-in-out infinite;
+  }
+}
+
+@keyframes mobileLightPulse {
+  0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.6; transform: translateX(-50%) scale(1.1); }
 }

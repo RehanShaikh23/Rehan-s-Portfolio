@@ -134,7 +134,8 @@ body {
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-relaxed);
   color: var(--color-text);
-  background: var(--color-background);
+  background: #F0FDFA !important;
+  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -143,6 +144,7 @@ body {
 
 /* Enhanced App Layout */
 .app {
+  background: #107068 !important;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -150,9 +152,10 @@ body {
 }
 
 .main-content {
-  flex: 1;
+flex: 1;
   position: relative;
   z-index: 1;
+  background: transparent;
 }
 
 /* Enhanced Typography */

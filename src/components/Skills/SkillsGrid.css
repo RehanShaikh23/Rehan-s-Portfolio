@@ -1,9 +1,14 @@
 .skills-grid {
+width: 100%;
+  margin: 0;
+  min-height: 100vh;
   padding: 5rem 0;
   background: linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #134e4a 100%);
   color: #f0fdfa;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
+  z-index: 2; 
 }
 
 .skills-grid::before {
