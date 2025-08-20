@@ -75,18 +75,13 @@ width: 100%;
 }
 
 .section-subtitle {
-  font-size: 1.3rem; /* Slightly larger for better readability */
-  color: #ffffff; /* Pure white instead of rgba */
-  max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.7;
-  font-weight: 500; /* Slightly bolder */
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4); /* Add text shadow */
-  background: rgba(255, 255, 255, 0.05); /* Subtle background for contrast */
-  padding: 1rem 2rem; /* Add padding */
-  border-radius: 12px; /* Rounded corners */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-  backdrop-filter: blur(10px); /* Blur effect */
+   color: #ffffff !important;     /* clear white */
+  opacity: 1 !important;         /* fully visible */
+  filter: none !important;       /* remove blur */
+  text-shadow: none !important;  /* no shadow blur */
+  font-size: 1.1rem;             /* slightly bigger */
+  font-weight: 400;              /* medium weight for readability */
+  line-height: 1.6;
 }
 
 .category-filters {

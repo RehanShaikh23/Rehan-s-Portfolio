@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 import { personalInfo } from '../../data/personalInfo';
-import LightRays from '../LightRays/LightRays';
+import Particles from '../Particles/Particles'; // Add this import
 import './Footer.css';
 
 const Footer = () => {
@@ -84,39 +84,45 @@ const Footer = () => {
     setHoveredSocial(null);
   };
 
-  // Mobile-optimized LightRays settings
-  const lightRaysProps = isMobile ? {
-    raysOrigin: "top-center",
-    raysColor: "#3b82f6",
-    raysSpeed: 0.8, // Slower on mobile for performance
-    lightSpread: 1.2, // More spread for better visibility
-    rayLength: 2.5, // Longer rays
-    followMouse: false, // Disable mouse following on mobile
-    mouseInfluence: 0,
-    noiseAmount: 0.05, // Less noise for performance
-    distortion: 0.01, // Less distortion
-    pulsating: true, // Add pulsating effect for mobile
-    fadeDistance: 0.8,
-    saturation: 1.2, // Higher saturation for better visibility
-    className: "footer-rays mobile-rays"
+
+
+  // Particles configuration - optimized for footer
+  const particlesProps = isMobile ? {
+    particleColors: ['#3b82f6', '#10b981', '#ffffff'],
+    particleCount: 80, // Reduced for mobile performance
+    particleSpread: 8,
+    speed: 0.05, // Slower on mobile
+    particleBaseSize: 60,
+    moveParticlesOnHover: false, // Disable on mobile
+    alphaParticles: true,
+    disableRotation: false,
+    particleHoverFactor: 0,
+    sizeRandomness: 0.8,
+    cameraDistance: 25,
+    className: "footer-particles mobile-particles"
   } : {
-    raysOrigin: "top-center",
-    raysColor: "#3b82f6",
-    raysSpeed: 1.2,
-    lightSpread: 0.6,
-    rayLength: 1.5,
-    followMouse: true,
-    mouseInfluence: 0.08,
-    noiseAmount: 0.12,
-    distortion: 0.03,
-    className: "footer-rays"
+    particleColors: ['#3b82f6', '#10b981', '#ffffff'],
+    particleCount: 150,
+    particleSpread: 12,
+    speed: 0.08,
+    particleBaseSize: 80,
+    moveParticlesOnHover: true,
+    alphaParticles: true,
+    disableRotation: false,
+    particleHoverFactor: 1.5,
+    sizeRandomness: 1,
+    cameraDistance: 20,
+    className: "footer-particles"
   };
 
   return (
     <footer className="footer" ref={footerRef}>
-      {/* LightRays Background */}
-      <div className="footer-lightrays">
-        <LightRays {...lightRaysProps} />
+      {/* Background Effects Layer */}
+      <div className="footer-background-effects">
+        {/* Particles Background */}
+        <div className="footer-particles-container">
+          <Particles {...particlesProps} />
+        </div>
       </div>
       
       <div className="footer-container">
