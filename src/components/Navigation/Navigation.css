@@ -114,7 +114,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   letter-spacing: 0.01em;
   display: flex;
   align-items: center;
@@ -161,16 +161,15 @@
 }
 
 .nav-item::after {
-  content: "";
+ content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
-  width: 0;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
   height: 2px;
   background: linear-gradient(90deg, #0d9488, #0f766e);
-  border-radius: 1px;
-  transition: width 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .nav-item:hover {
@@ -182,7 +181,7 @@
 }
 
 .nav-item:hover::after {
-  width: 80%;
+ transform: translateX(-50%) scaleX(1);
 }
 
 .nav-item.active {
