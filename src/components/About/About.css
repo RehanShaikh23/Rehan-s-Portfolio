@@ -5,6 +5,8 @@
   overflow: hidden;
 }
 
+
+
 .about::before {
   content: '';
   position: absolute;
