@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 import { personalInfo } from '../../data/personalInfo';
 import './Footer.css';
+import Squares from './Squares';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -61,7 +62,15 @@ const Footer = () => {
     <footer className="footer" ref={footerRef}>
       {/* Background Effects Layer */}
       <div className="footer-background-effects">
-       
+        <div style={{ position: 'absolute', inset: 0 }}>
+          <Squares
+            speed={0.4}
+            squareSize={20}
+            direction='diagonal'
+            borderColor='#ffffff22'
+            hoverFillColor='#222'
+          />
+        </div>
       </div>
 
       <div className="footer-container">
