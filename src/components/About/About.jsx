@@ -65,7 +65,7 @@ const About = () => {
     };
 
     setTimeout(() => {
-      animateCounter(20, 'projects');
+      animateCounter(30, 'projects');
       animateCounter(2, 'experience');
     }, 500);
   };

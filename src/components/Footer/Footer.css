@@ -58,7 +58,6 @@
   right: 0;
   bottom: 0;
   z-index: 0;
-  /* Ignore pointer events so UI above stays fully clickable */
   pointer-events: none;
 }
 
