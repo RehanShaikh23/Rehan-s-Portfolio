@@ -57,4 +57,22 @@ export const projects = [
     liveUrl: "",
     category: "Backend Application"
   },
+  {
+    id: 3,
+    title: "BookHaven - Online Book Store",
+    description: "A full stack web application for exploring and purchasing books with secure authentication, cart management, and external API integration.",
+    image: "https://img.freepik.com/premium-vector/buying-books-shop_118813-13782.jpg", 
+    technologies: ["React", "Spring Boot", "MySQL", "JWT", "Docker", "Google Books API", "Vercel", "Koyeb"],
+    features: [
+      "User Authentication with JWT",
+      "Browse & Search Books (Google Books API Integration)",
+      "Add/Remove Books from Cart",
+      "Secure Checkout Flow",
+      "Responsive UI with React",
+      "Deployed using Docker, Vercel (Frontend), and Koyeb (Backend)"
+    ],
+    githubUrl: "https://github.com/RehanShaikh23/BookHaven-Frontend.git",
+    liveUrl: "https://book-haven-store.vercel.app/",
+    category: "Full Stack Application"
+  }  
 ];
